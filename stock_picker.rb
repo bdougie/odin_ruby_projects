@@ -8,41 +8,22 @@
 
 def stock_picker(days)
 	# buy low sell high
-	high = days.sort
-	low = array.sort{|x,y| y <=> x }
-	best_profit = high - low
+	high = 0
+	low = 0
+	best_profit = 0
 
-	i = 0
-	while i < days.size # limits the check to the amount of days provided.
-		high = high[i]
-		low = low[i]
-# use must buy before you can sell. 
-		if days.index(low) < days.index(high)
-			return [days.index(low), days.index(high)]
-		else
-			next_high = high[i + 1]
-			next_low = low[i + 1]
-			if (high - next_low) > (next_high - low)
-				if days.index(next_low) < days.index(high)
-					return [days.index(next_low), day.index(max)]
-				end
-			else
-				if days.index(low) < days.index(next_high)
-					return [days.index(low), days.index(next_high)]
-				end
+	days[0..-2].each_with_index do |buy, i|
+		days[(i+1)..-1].each_with_index do |sell, j| 
+			if (sell - buy) > best_profit
+				high = j + (i+1)
+				low = i
+				best_profit = sell - buy
 			end
-		end
-		i += 1
+		end	
 	end
+	[low,high]	
 end
 
-
-print stock_picker([17,3,6,9,15,8,6,1,10])
-# stock_picker([3,6,9,15,8,6,1,10,17])
-# stock_picker([3,6,9,15,8,6,10,1,17])
-
-# this is waht I started to do with hash, but got a little too complicated
-
-	# best_day = Hash.new(0)
-	# days.each_with_index { |price, day| best_day[price] = day	}
-	# puts best_day
+puts stock_picker([17,3,6,9,15,8,6,1,10]).inspect
+puts stock_picker([3,6,9,15,8,6,1,10,17]).inspect
+puts stock_picker([3,6,9,15,8,6,10,1,17]).inspect

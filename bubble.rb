@@ -26,22 +26,25 @@ end
 def bubble_sort_by(list) 
 	return list if list.size <= 1
 
-	swapped = true
-	while swapped do 
-		swapped = false
-		0.upto(list.size-2) do |i| # -2 is checking up to the second to last position.
-			if list[i] > list [i+1]
+	count = 0
+	while count < list.length-1 do 
+		list.each_index do |i| # -2 is checking up to the second to last position.
+			if list[i] != nil 
 				list[i], list[i+1] = list[i+1], list[i] if yield(list[i+1], list[i]) > 0
 				swapped = true
 			end
 		end
+		count += 1	
 	end
-	puts list # prints list per comlpete itteration
-
+	return list 
 end
 
+raise "bubble_sort_by(['hi', 'hello', 'hey', 'z']) {|left,right| right.length - left.length}" unless bubble_sort_by(['hi', 'hello', 'hey', 'z']){|left,right| right.length - left.length} == true
+# bubble_sort_by(list) do |left,right| 
+# 	right.length - left.length 
+# end
 
-bubble_sort_by(list) { |left, right| right.length - left.length }
+# undefined method `length' for nil:NilClass (NoMethodError)
 
 
 

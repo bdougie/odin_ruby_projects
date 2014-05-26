@@ -39,10 +39,9 @@ def bubble_sort_by(list)
 	return list 
 end
 
-raise "bubble_sort_by(['hi', 'hello', 'hey', 'z']) {|left,right| right.length - left.length}" unless bubble_sort_by(['hi', 'hello', 'hey', 'z']){|left,right| right.length - left.length} == true
-# bubble_sort_by(list) do |left,right| 
-# 	right.length - left.length 
-# end
+bubble_sort_by(list) do |left,right| 
+	right.length - left.length 
+end
 
 # undefined method `length' for nil:NilClass (NoMethodError)
 

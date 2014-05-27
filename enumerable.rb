@@ -88,17 +88,17 @@ module Enumerable
 		end
 		memo
 	end
+end
 
-	def multiply_ls(array)
+def multiply_ls(array)
 		array.my_inject{ |total, n| total * n }
-	end
+end
 
 	# def add_it_up(array)
 	# 	array.my_inject{|total, n| total += n}
 	# end
-end
 
 # testing is not working....
 
 	# add_it_up([1,2,3])
-	# puts multiply_ls([1,2,3])
+puts multiply_ls([1,2,3,4,5,6])

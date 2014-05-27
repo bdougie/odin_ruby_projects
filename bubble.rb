@@ -17,33 +17,35 @@ def bubble_sort(array)
 			puts array.inspect # prints array per itteration
 
 		end
-		# puts array.inspect # prints array per comlpete itteration
+		# puts array.inspect # prints array per complete itteration
 	end
 end
 
-# bubble_sort(array).inspect
+bubble_sort(array).inspect
 
 def bubble_sort_by(list) 
-	return list if list.size <= 1
 
 	count = 0
 	while count < list.length-1 do 
 		list.each_index do |i| # -2 is checking up to the second to last position.
-			if list[i] != nil 
+			if list[i+1] != nil
 				list[i], list[i+1] = list[i+1], list[i] if yield(list[i+1], list[i]) > 0
 				swapped = true
 			end
 		end
 		count += 1	
 	end
-	return list 
+	return list.inspect
 end
 
-bubble_sort_by(list) do |left,right| 
-	right.length - left.length 
+array_to_sort_by = ["hi", "hello", "hey","h"]
+
+bubble_sort_by(array_to_sort_by) do |left,right|
+    right.length - left.length
 end
+
 
 # undefined method `length' for nil:NilClass (NoMethodError)
-
+puts array_to_sort_by
 
 

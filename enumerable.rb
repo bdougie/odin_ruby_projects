@@ -68,17 +68,36 @@ module Enumerable
 		counter	 
 	end
 
+	# block pr proc given
+	proc = Proc.new { |arg1| print "#{arg1}! " } #ruby explained http://www.eriktrautman.com/posts/ruby-explained-blocks-procs-and-lambdas-aka-closures
 	def my_map(&block)
-		map = []
-		if block_given?
-			for i in self
-				map << block.call(i)
+			map = []
+			if block_given?
+				for i in self
+					map << block.call(i)
+				end
+				map
+			elsif proc 
+				for i in self
+					map << proc.call(i)
+				end
+				map
+			else
+				self
 			end
-			map
-		else
-			self
-		end
 	end
+
+	# def my_map(&block)
+	# 	map = []
+	# 	if block_given?
+	# 		for i in self
+	# 			map << block.call(i)
+	# 		end
+	# 		map
+	# 	else
+	# 		self
+	# 	end
+	# end
 
 	def my_inject(n=nil)
 		memo = n == nil ? self.first : n
